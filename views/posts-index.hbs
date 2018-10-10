@@ -1,0 +1,16 @@
+
+
+<h1 class="posts-index-h1">Posts</h1>
+
+<div class="post-container">
+{{#each posts}}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><a href="/posts/{{this._id}}">{{this.title}}</a></h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{this.postType}}</h6>
+        <p class="card-text">{{this.content}}</p>
+        <a href="#" class="card-link">{{this.category}}</a>
+      </div>
+    </div>
+{{/each}}
+</div>

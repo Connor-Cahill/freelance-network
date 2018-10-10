@@ -1,0 +1,56 @@
+
+
+<div class="container contact-form">
+            <div class="contact-image">
+                <!-- <img src="" alt="rocket_contact"/> -->
+            </div>
+            <form  action='/posts' method="post">
+                <h3>Start A Conversation</h3>
+               <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="title" class="form-control" placeholder="Title"/>
+                        </div>
+                        <div class="form-group">
+                            <span>
+                                <select class="custom-select" name="postType" id="post-type-selector">
+                                    <option selected>Post Type</option>
+                                    <option value="question">Question</option>
+                                    <option value="story">Story</option>
+                                    <option value="advice">Advice</option>
+                                    <option value="ideas">Ideas</option>
+                                    <option value="partnerships">Partnerships</option>
+                                    <option value="learning-resources">Learning Resources</option>
+                                  </select>
+                            </span>
+                           </div>
+                               <span>
+                             <div class="form-group">
+                                 <select class="custom-select" name="category" id="category-selector">
+                                   <option selected>Category</option>
+                                   <option value="frontend-web">Frontend Web Development</option>
+                                   <option value="backend">Backend Development</option>
+                                   <option value="iOS-dev">iOS Development</option>
+                                   <option value="art">Art</option>
+                                   <option value="digital-marketing">Digital Marketing</option>
+                                   <option value="content-creation">Content Creation</option>
+                                   <option value="personal-brand">Personal Branding</option>
+                                 </select>
+                           </span>
+                       </div>
+                           </div>
+                           <!-- <button type="submit" class="btn btn-primary btn-block">Post</button> -->
+                           <div class="col-md-6">
+                               <div class="form-group">
+                                   <textarea name="content" class="form-control" placeholder="Type words here ..." style="width: 100%; height: 220px;"></textarea>
+                               </div>
+                           </div>
+
+                           <button type="submit" class="btn btn-primary btn-block">Post</button>
+
+                    </div>
+
+
+                </div>
+            </form>
+</div>
