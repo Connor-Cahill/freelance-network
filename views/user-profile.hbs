@@ -1,9 +1,8 @@
+<h1>{{user.username}}</h1>
 
-
-<h1 class="posts-index-h1">Posts</h1>
-
+<h2>Recent Activity</h2>
 <div class="post-container">
-{{#each posts}}
+    {{#each posts}}
     <div class="card post-preview">
       <div class="card-body">
         <h5 class="card-title"><a href="/posts/{{this._id}}">{{this.title}}</a></h5>
@@ -12,8 +11,7 @@
             <p class="card-text preview-content">{{this.content}}</p>
         </div>
         <p>Category: <a href="/n/{{this.category}}" class="card-link">{{this.category}}</a></p>
-        <p>User: <a href="#" class="card-link">{{this.author.username}}</a></p>
       </div>
     </div>
-{{/each}}
+    {{/each}}
 </div>

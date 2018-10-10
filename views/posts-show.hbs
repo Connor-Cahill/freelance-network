@@ -1,7 +1,8 @@
 <div class="jumbotron" style="height: 500px; margin-top:50px;" id="jumbotron">
   <h1 class="display-4">{{post.title}}</h1>
+  <small>User: {{post.author.username}}</small>
   <hr class="my-4">
-  <p class="lead">{{post.content}}</p>
+  <p class="lead post-content">{{post.content}}</p>
   <hr class="my-4">
   <div class="post-footer">
       <div class="post-category">Category: {{post.category}}</div>
@@ -24,6 +25,7 @@
 
 {{#each post.comments}}
     <p class="comment-display">{{this.content}}</p>
+    <p class="lead">User: {{this.author.username}}</p>
     <hr class="seperator">
 {{/each}}
 </div>

@@ -2,6 +2,7 @@
 
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const User = require('../models/user');
 
 
 module.exports = function(app) {
@@ -10,8 +11,11 @@ module.exports = function(app) {
 
     //Index
     app.get('/', (req, res) => {
-        Post.find({}).then(post => {
-            res.render('posts-index.hbs', { posts: post });
+        const curUser = req.user;
+
+        Post.find({}).populate({path: 'author'}).then(post => {
+            console.log('This is the curUSer ---> ' + curUser);
+            res.render('posts-index.hbs', { posts: post, curUser: curUser });
         }).catch(err => {
             console.log(err.message);
         });
@@ -24,7 +28,10 @@ module.exports = function(app) {
 
 ////    SHOW INDIVIUAL POST
 app.get('/posts/:id', (req, res) => {
-    Post.findById(req.params.id).populate('comments').then(post => {
+    Post.findById(req.params.id).populate('author').populate({
+        path: 'comments',
+        populate: {path: 'author'}
+    }).then(post => {
         res.render('posts-show.hbs', {post});
     }).catch(err => {
         console.log(err.message);
@@ -32,21 +39,43 @@ app.get('/posts/:id', (req, res) => {
 })
 
 
-///////CATEGORY FILTER
+//---------CATEGORY FILTER---------//
 app.get('/n/:category', (req, res) => {
-    Post.find({ category: req.params.category}).then(post => {
+    const curUser = req.user;
+    Post.find({ category: req.params.category}).then(posts => {
         console.log(req.params.category);
-        res.render('posts-index.hbs', {post: post})
+        console.log('this is a post -----> ' + posts );
+        res.render('posts-index.hbs', {posts: posts, curUser: curUser})
     }).catch(err => {
         console.log(err.message);
     })
 })
 
 app.post('/n/:category', (req, res) => {
-    Post.find({ category: req.params.category}).then((post) => {
-        res.render('posts-index.hbs', {post: post})
-    })
+    if(req.user) {
+        Post.find({ category: req.params.category}).then((post) => {
+            res.render('posts-index.hbs', {post: post})
+        }).catch(err => {
+            console.log(err.message);
+        })
+    } else {
+        console.log('User is not singned in ... ')
+        return res.status(401).send('You need to be signed in to do that!');
+    }
+
 })
+
+
+//-----USER -----////
+// app.get('/users/:username', (req, res) => {;
+//     User.find({username: req.user.username}).then(user => {
+//         user.posts.shift(post);
+//         return Post.find({posts: req.user._id});
+//     }).then(posts => {
+//         res.render('user-profile.hbs', {user, posts})
+//     })
+//
+// })
 
 
 
@@ -55,13 +84,23 @@ app.post('/n/:category', (req, res) => {
 
     //post new post
     app.post('/posts', (req, res) => {
-        const post = new Post(req.body);
-        //save post to DB
-        post.save((err, response) => {
-            // console.log('This is the saved res -----> ' + response)
-            res.redirect('/');
-        })
-
+        if(req.user) {
+            const post = new Post(req.body);
+            post.author = req.user._id;
+            //save post to DB
+            post.save((err, response) => {
+                return User.findById(req.user._id).then(user => {
+                    user.posts.unshift(post);
+                    user.save();
+                    res.redirect('/');
+                }).catch(err => {
+                    console.log(err.message);
+                })
+            })
+        } else {
+            console.log('user is not signed in ');
+            return res.status(401).send('You need to be signed in to do that');
+        }
     })
 
 

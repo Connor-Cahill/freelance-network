@@ -47,7 +47,7 @@ app.post('/signup', (req, res) => {
 
 ////////LOGIN ROUTE /////////
 app.post('/login', (req, res) => {
-    console.log('This is the request body ----> ' + req.body);
+    // console.log('This is the request body ----> ' + req.body);
     // const user = User(req.body);
     //find username and password
     User.findOne({username: req.body.username}).then((user) => {

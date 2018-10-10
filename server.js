@@ -1,4 +1,5 @@
 const express = require('express')
+const methodOverride = require('method-override')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv').config();
@@ -7,6 +8,7 @@ const port = process.env.PORT;
 const postController = require('./controllers/posts-controller')
 const commentController = require('./controllers/comments-controller');
 const authController = require('./controllers/auth');
+const adminController = require('./controllers/admin');
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 
@@ -38,7 +40,7 @@ const checkAuth = (req, res, next) => {
     next();
 }
 
-
+app.use(methodOverride('_method'))
 app.use(checkAuth)
 app.engine('hbs', exphbs({ defaultLayout: 'main.hbs' }))
 app.set('view engine', 'hbs');
@@ -52,6 +54,7 @@ app.use(bodyParser.json());
 postController(app);
 commentController(app);
 authController(app);
+adminController(app);
 
 
 

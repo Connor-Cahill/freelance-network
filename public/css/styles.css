@@ -28,10 +28,26 @@ POSTS-INDEX PAGE STYLING
 } */
 .post-container .card {
     float: left;
-    margin: 5px;
+    margin: 8px;
     box-shadow: 5px 2.5px 2.5px;
 }
+.post-preview {
+    width: 18rem;
+    height: 18rem;
+}
 
+.preview-content {
+    text-overflow: ellipsis;
+    height: 8rem;
+    width: 15rem;
+
+}
+
+.preview-space {
+    text-overflow: ellipsis;
+    height: 8rem;
+    width: 15rem;
+}
 
 /******
 posts-new
@@ -106,6 +122,10 @@ POSTS-SHOW STYLING:
     color: black;
 }
 
+.post-content {
+    margin-bottom: 50px;
+}
+
 
 .comment-section {
     display: flex;
@@ -168,4 +188,15 @@ POSTS-SHOW STYLING:
     padding-right: 30px;
     padding-bottom: 20px;
     padding-top: 20px;
+}
+
+
+
+/*****************************
+-----ADMIN DASHBOARD---------
+******************************/
+
+.admin-post-container {
+    background-color: white;
+    padding: 20px;
 }
