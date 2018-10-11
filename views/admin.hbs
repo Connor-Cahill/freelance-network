@@ -1,13 +1,13 @@
-<h1>Admin Dashboard</h1>
+<h1 class="admin-header">Admin Dashboard</h1>
 
 
-<h2>Posts: </h2>
+<h2 class="admin-post-header">Posts: </h2>
 <div class="admin-post-container">
     {{#each posts}}
         <h3>{{this.title}}</h3>
         <p>{{this.content}}</p>
         <form action="/admin/posts/{{this._id}}?_method=DELETE" method="post">
-            <button type="submit">Delete</button>
+            <button class="btn btn-primary" type="submit">Delete</button>
         </form>
         <hr>
     {{/each}}

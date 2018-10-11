@@ -1,19 +1,41 @@
 
 
-<h1 class="posts-index-h1">Posts</h1>
-
-<div class="post-container">
-{{#each posts}}
-    <div class="card post-preview">
-      <div class="card-body">
-        <h5 class="card-title"><a href="/posts/{{this._id}}">{{this.title}}</a></h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{this.postType}}</h6>
-        <div class="preview-space">
-            <p class="card-text preview-content">{{this.content}}</p>
+<h1 class="posts-index-h1">See What People Are Talking About</h1>
+<div class="row">
+    <div class="col-md-10">
+        <div class="post-container">
+        {{#each posts}}
+        <div class="card-border">
+            <div class="card post-preview">
+              <div class="card-body">
+                <h5 class="card-title"><a href="/posts/{{this._id}}">{{this.title}}</a></h5>
+                <h6 class="card-subtitle mb-2 text-muted" id="post-type">{{this.postType}}</h6>
+                <div class="preview-space">
+                    <p class="card-text preview-content">{{this.content}}</p>
+                </div>
+                <p>Category: <a href="/n/{{this.category}}" class="card-link">{{this.category}}</a></p>
+                <p>User: <a href="#" class="card-link">{{this.author.username}}</a></p>
+              </div>
+            </div>
         </div>
-        <p>Category: <a href="/n/{{this.category}}" class="card-link">{{this.category}}</a></p>
-        <p>User: <a href="#" class="card-link">{{this.author.username}}</a></p>
-      </div>
+        {{/each}}
+        </div>
     </div>
-{{/each}}
+    <div class="col-md-2 align-right">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            {{#if curUser}}
+            <h5 class="card-title">Welcome Back!</h5>
+            <p class="card-text">Check out the home feed and see what people are talking about today. Stay active in the community and join the conversation!</p>
+            <a href="/posts/new" class="card-link">Create A Post</a>
+            {{else}}
+            <h5 class="card-title">Welcome To Netmake!</h5>
+            <p class="card-text">Netmake is an online community for young entrepreneurs and freelancers just like you! Take a look around and see what people are talking about. Signup or Login to join the conversation. </p>
+            <a href="/signup" class="card-link">Sign Up</a>
+            <a href="/login" class="card-link">Login</a>
+            {{/if}}
+          </div>
+        </div>
+    </div>
+
 </div>

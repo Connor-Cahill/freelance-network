@@ -1,5 +1,17 @@
 body{
     background: -webkit-linear-gradient(left, #0072ff, #00c6ff);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px
+
+}
+
+h1 {
+    font-family: 'Niramit', sans-serif;
+
+}
+
+h2 {
+    font-family: 'Niramit', sans-serif;
 }
 
 
@@ -31,6 +43,13 @@ POSTS-INDEX PAGE STYLING
     margin: 8px;
     box-shadow: 5px 2.5px 2.5px;
 }
+.post-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .post-preview {
     width: 18rem;
     height: 18rem;
@@ -199,4 +218,14 @@ POSTS-SHOW STYLING:
 .admin-post-container {
     background-color: white;
     padding: 20px;
+}
+
+.admin-header {
+    color: white;
+    margin-bottom: 50px;
+    margin-top: 25px;
+}
+
+.admin-post-header {
+    color: white;
 }
