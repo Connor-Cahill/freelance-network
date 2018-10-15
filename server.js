@@ -9,6 +9,7 @@ const postController = require('./controllers/posts-controller')
 const commentController = require('./controllers/comments-controller');
 const authController = require('./controllers/auth');
 const adminController = require('./controllers/admin');
+const projectsController = require('./controllers/projects-controller');
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 
@@ -55,6 +56,7 @@ postController(app);
 commentController(app);
 authController(app);
 adminController(app);
+projectsController(app);
 
 
 

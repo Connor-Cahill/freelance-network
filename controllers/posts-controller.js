@@ -51,6 +51,9 @@ app.get('/n/:category', (req, res) => {
     })
 })
 
+
+
+
 app.post('/n/:category', (req, res) => {
     if(req.user) {
         Post.find({ category: req.params.category}).then((post) => {
@@ -66,16 +69,19 @@ app.post('/n/:category', (req, res) => {
 })
 
 
-//-----USER -----////
-// app.get('/users/:username', (req, res) => {;
-//     User.find({username: req.user.username}).then(user => {
-//         user.posts.shift(post);
-//         return Post.find({posts: req.user._id});
-//     }).then(posts => {
-//         res.render('user-profile.hbs', {user, posts})
-//     })
-//
-// })
+////------FILTER POST BY USER ---- ////
+
+app.get('/users/:username/posts', (req, res) => {
+    User.findOne({username: req.params.username}).populate('posts').then(user => {
+        res.render('user-posts.hbs', {user: user});
+    }).catch(err => {
+        console.log(err.message);
+    })
+})
+
+
+
+
 
 
 
@@ -94,7 +100,7 @@ app.post('/n/:category', (req, res) => {
                     user.save();
                     res.redirect('/');
                 }).catch(err => {
-                    console.log(err.message);
+                    console.log( + err.message);
                 })
             })
         } else {
