@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 describe('site', () => {
     it('Should have a homepage', (done) => {
-        chai.request('localhost:3000')
+        chai.request('localhost:5000')
         .get('/')
         .end((err, res) => {
             if(err) {
