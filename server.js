@@ -30,7 +30,7 @@ mongoose.Promise = global.Promise
 
 //////CHECK IF USER IS AUTHORIZED /////////
 const checkAuth = (req, res, next) => {
-    console.log('Checking Auth-')
+    //console.log('Checking Auth-')
     if (typeof req.cookies.cToken === 'undefined' || req.cookies.cToken === null) {
         req.user = null;
     } else {
