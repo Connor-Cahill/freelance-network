@@ -47,7 +47,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main.hbs' }))
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
-mongoose.connect('mongodb://localhost/netmake', {useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/netmake', {useNewUrlParser: true});
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error: '))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());

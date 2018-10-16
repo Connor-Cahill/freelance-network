@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/netmake', {useNewUrlParser: true});
 const bcrypt = require('bcrypt-nodejs');
 // const mongoosePassport = require('passport-local-mongoose');
 const Schema = mongoose.Schema;

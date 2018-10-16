@@ -8,7 +8,6 @@ Projects will be able to:
     - can recieve "work requests" from other users which can be appected or denied by project host
 */
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/netmake', {useNewUrlParser: true});
 
 const Schema = mongoose.Schema;
 
